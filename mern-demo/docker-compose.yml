@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Câu 81: Khai báo Service backend
+  backend:
+    build: ./server
+    
+    # Câu 83: Cấu hình Port cho Service backend
+    ports:
+      - "5000:5000"
+      
+    # Câu 85: Cấu hình biến môi trường MONGODB_URI cho Backend
+    environment:
+      - MONGODB_URI=mongodb+srv://binhlmk123:Binhlmk123@cluster0.zzq9xjp.mongodb.net/cloud_lab?appName=Cluster0 
+    networks:
+      - mern-net
+
+  # Câu 82: Khai báo Service frontend
+  frontend:
+    build: ./client
+    
+    # Câu 84: Cấu hình Port cho Service frontend
+    ports:
+      - "5173:5173"
+      
+    command: npm run preview -- --host 0.0.0.0 --port 5173
+    
+    networks:
+      - mern-net
+
+networks:
+  mern-net:
+    driver: bridge
