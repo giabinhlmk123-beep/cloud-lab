@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h2>Quản lý Sinh viên</h2>
+      <h2>Quản lý Sinh viên - V2</h2>
 
       {/* Form nhập liệu (Dùng chung cho cả Thêm mới và Sửa) */}
       <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>

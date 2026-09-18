@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    image: giabinhlmk123/mernbackend:1.0    # Câu 51: Dùng image thay vì build
+    ports:
+      - "5000:5000"                         # Câu 53: Ánh xạ port 5000 cho backend
+      # Câu 55: Cấu hình biến môi trường
+    environment:
+      - MONGODB_URI=mongodb+srv://binhlmk123:Binhlmk123@cluster0.zzq9xjp.mongodb.net/cloud_lab?appName=cluster0
+    networks:
+      - mern-net
+
+  frontend:
+    image: giabinhlmk123/mernfrontend:2.0   # Câu 52: Dùng image thay vì build
+    ports:
+      - "5173:5173"                         # Câu 54: Ánh xạ port frontend ra máy local
+    command: npm run preview -- --host 0.0.0.0 --port 5173
+    networks:
+      - mern-net
+
+networks:
+  mern-net:
+    driver: bridge
