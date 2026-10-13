@@ -12,7 +12,7 @@ services:
       - mern-net
 
   frontend:
-    image: giabinhlmk123/mernfrontend:2.0   # Câu 52: Dùng image thay vì build
+    image: giabinhlmk123/mern-frontend:2.0   # Câu 52: Dùng image thay vì build
     ports:
       - "5173:5173"                         # Câu 54: Ánh xạ port frontend ra máy local
     command: npm run preview -- --host 0.0.0.0 --port 5173
