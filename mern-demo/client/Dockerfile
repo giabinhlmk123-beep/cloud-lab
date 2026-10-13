@@ -13,5 +13,9 @@ RUN npm install
 # Câu 55: Sao chép toàn bộ source code React vào Container
 COPY . .
 
+#Nhận biến VITE_API_URL truyền vào khi build
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
 # Câu 56: Build React Application thành các file tĩnh 
 RUN npm run build
