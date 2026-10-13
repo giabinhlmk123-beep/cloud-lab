@@ -28,6 +28,12 @@ app.use(cors({
 
 app.use(express.json());
 
+// Thêm đoạn này để in log mọi request ra Render Dashboard
+app.use((req, res, next) => {
+  console.log(`[HTTP] ${req.method} ${req.url}`);
+  next();
+});
+
 // Kết nối đến cơ sở dữ liệu MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
