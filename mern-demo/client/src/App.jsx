@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 // Nếu có biến môi trường VITE_API_URL thì dùng, nếu không có (chạy local) thì tự gọi về localhost:5000
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -12,7 +13,7 @@ function App() {
   // Gọi API GET /api/students để lấy danh sách sinh viên
   const fetchStudents = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/students');
+      const res = await fetch(`${API_BASE_URL}/api/students`);
       const data = await res.json();
       setStudents(data);
     } catch (err) {
@@ -30,7 +31,7 @@ function App() {
     try {
       if (editingId) {
         // Nếu đang sửa -> Gọi API PUT
-        await fetch(`http://localhost:5000/api/students/${editingId}`, {
+        await fetch(`${API_BASE_URL}/api/students/${editingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -38,7 +39,7 @@ function App() {
         setEditingId(null); // Thoát chế độ sửa
       } else {
         // Nếu thêm mới -> Gọi API POST
-        await fetch('http://localhost:5000/api/students', {
+        await fetch(`${API_BASE_URL}/api/students`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -72,7 +73,7 @@ function App() {
   const handleDelete = async (id) => {
     if (!window.confirm('Bạn có chắc chắn muốn xóa sinh viên này không?')) return;
     try {
-      await fetch(`http://localhost:5000/api/students/${id}`, {
+      await fetch(`${API_BASE_URL}/api/students/${id}`, {
         method: 'DELETE'
       });
       fetchStudents();
