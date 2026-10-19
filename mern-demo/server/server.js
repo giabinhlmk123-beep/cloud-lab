@@ -87,6 +87,15 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Backend is running!' });
 });
 
+// API Health Check phục vụ Rolling Update (Câu 44)
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'UP',
+    timestamp: new Date(),
+    uptime: process.uptime()
+  });
+});
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server v1.2 CD Auto-Deploy is running on port ${PORT}`);
 });
